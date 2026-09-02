@@ -24,7 +24,7 @@ public class AlunoService {
         if (dto == null){
             throw new RequiredObjectIsNullException();
         }
-        if (repository.existByRa(dto.registroAcademico())){
+        if (repository.existsByRa(dto.registroAcademico())){
             throw new DataAlreadyRegistered("O RA desse aluno já está cadastrado");
         }
 

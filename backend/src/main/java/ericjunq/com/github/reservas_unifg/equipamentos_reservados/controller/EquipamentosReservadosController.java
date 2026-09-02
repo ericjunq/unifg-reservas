@@ -25,7 +25,7 @@ public class EquipamentosReservadosController {
         return ResponseEntity.ok(reservasEquipamentos);
     }
 
-    @GetMapping(value = "{/id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<EquipamentosReservados> buscarReservasDeEquipamentoPorID(@PathVariable("id") Long id){
         EquipamentosReservados reservaEquipamentos = service.buscarEquipamentosReservadosPorId(id);
 
