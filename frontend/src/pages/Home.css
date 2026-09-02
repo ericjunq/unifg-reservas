@@ -1,0 +1,237 @@
+.unifg-home {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* ---------------- Hero ---------------- */
+
+.unifg-hero {
+  position: relative;
+  min-height: 640px;
+  background-size: cover;
+  background-position: center 25%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+}
+
+/* Degradê no topo da imagem */
+.unifg-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0.35) 40%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Clareamento do lado esquerdo para o texto */
+.unifg-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.97) 0%,
+    rgba(255, 255, 255, 0.9) 28%,
+    rgba(255, 255, 255, 0.35) 46%,
+    rgba(255, 255, 255, 0) 62%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.unifg-dots {
+  position: absolute;
+  top: 90px;
+  left: 24px;
+  width: 110px;
+  height: 110px;
+  z-index: 2;
+}
+
+.unifg-dashes {
+  position: absolute;
+  top: 108px;
+  left: 46px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 2;
+}
+
+.dash {
+  display: inline-block;
+  width: 16px;
+  height: 4px;
+  transform: skewX(-25deg);
+  border-radius: 1px;
+}
+
+.dash-yellow {
+  background: var(--unifg-yellow);
+}
+
+.dash-blue {
+  background: var(--unifg-blue);
+}
+
+/* ---------------- Bloco de texto ---------------- */
+
+.unifg-content {
+  position: relative;
+  z-index: 3;
+  max-width: 620px;
+  padding: 0 48px;
+}
+
+.unifg-rule {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.unifg-rule-top {
+  margin-bottom: 18px;
+}
+
+.unifg-rule-top .tick {
+  width: 22px;
+  height: 4px;
+  background: var(--unifg-blue-dark);
+  transform: skewX(-25deg);
+  flex-shrink: 0;
+}
+
+.unifg-rule-top .line {
+  flex: 1;
+  height: 2px;
+  background: var(--unifg-blue-dark);
+  opacity: 0.5;
+}
+
+.unifg-rule-bottom {
+  margin-top: 22px;
+  height: 4px;
+  width: 260px;
+  background: var(--unifg-yellow);
+  border-radius: 2px;
+}
+
+.unifg-headline {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 0.98;
+  letter-spacing: -0.5px;
+}
+
+.unifg-headline .line-1 {
+  font-weight: 900;
+  font-size: 84px;
+  background: linear-gradient(
+    180deg,
+    var(--unifg-blue-dark) 35%,
+    var(--unifg-blue-mid) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.unifg-headline .line-2 {
+  font-weight: 800;
+  font-size: 54px;
+  color: var(--unifg-gray-text);
+  margin-top: 2px;
+}
+
+.unifg-headline .line-2 .light {
+  font-weight: 700;
+  color: var(--unifg-gray-text);
+}
+
+.unifg-headline .line-3 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-weight: 900;
+  font-size: 54px;
+  color: var(--unifg-blue-dark);
+  margin-top: 6px;
+  padding-left: 22px;
+}
+
+.unifg-headline .line-3 .accent-bar {
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 8px;
+  background: var(--unifg-yellow);
+  border-radius: 2px;
+}
+
+.unifg-headline .line-3 .highlight {
+  color: var(--unifg-blue);
+}
+
+/* ---------------- Responsivo ---------------- */
+
+@media (max-width: 900px) {
+  .unifg-hero {
+    min-height: auto;
+    padding: 40px 0 300px;
+    background-position: center 15%;
+  }
+
+  .unifg-hero::before {
+    height: 140px;
+  }
+
+  .unifg-hero-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.97) 0%,
+      rgba(255, 255, 255, 0.9) 55%,
+      rgba(255, 255, 255, 0.2) 100%
+    );
+  }
+
+  .unifg-content {
+    padding: 0 24px;
+    max-width: 100%;
+  }
+
+  .unifg-headline .line-1 {
+    font-size: 52px;
+  }
+
+  .unifg-headline .line-2,
+  .unifg-headline .line-3 {
+    font-size: 32px;
+  }
+
+  .unifg-rule-bottom {
+    width: 160px;
+  }
+
+  .unifg-dots,
+  .unifg-dashes {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unifg-btn-reservar {
+    transition: none;
+  }
+}
