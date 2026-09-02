@@ -1,3 +1,19 @@
 spring:
   application:
     name: reservas-unifg
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/reservas_unifg
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+      show-sql: true
+
+spring-doc:
+  #paths-to-match
+  swagger-ui:
+    use-root-path: true
