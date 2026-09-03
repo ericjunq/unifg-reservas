@@ -1,33 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap");
 
-:root {
-  --unifg-blue-dark: #0d2c6b;
-  --unifg-blue: #1449c4;
-  --unifg-blue-mid: #2f6fe0;
-  --unifg-navy-text: #16223d;
-  --unifg-yellow: #f2b705;
-  --unifg-white: #ffffff;
-  --unifg-gray-text: #2b2f38;
-}
+@import "tailwindcss";
 
-* {
-  box-sizing: border-box;
-}
+@theme {
+  --color-unifg-blue: #0D2C6B;
+  --color-unifg-blue-dark: #06163A;
+  --color-unifg-blue-mid: #144096;
+  --color-unifg-yellow: #FACC15;
+  --color-unifg-gray-text: #4B5563;
 
-html,
-body,
-#root {
-  margin: 0;
-  padding: 0;
-  width: 100%;
+  --font-main: "Montserrat", sans-serif;
 }
 
 body {
-  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
-  color: var(--unifg-navy-text);
-}
-
-img {
-  display: block;
-  max-width: 100%;
+  font-family: var(--font-main);
 }
