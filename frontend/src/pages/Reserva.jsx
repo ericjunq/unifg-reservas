@@ -44,6 +44,13 @@ const HORARIOS = [
   "21:00",
 ];
 
+const MATERIAIS = [
+  "Bola de futsal",
+  "Bola de vôlei",
+  "Bola de basquete",
+  "Rede",
+];
+
 function ehMesmoDia(a, b) {
   if (!a || !b) return false;
 
@@ -86,6 +93,8 @@ export default function Reserva() {
   const [dataSelecionada, setDataSelecionada] = useState(null);
   const [horarioSelecionado, setHorarioSelecionado] = useState(null);
   const [ra, setRa] = useState("");
+  const [materialSelecionado, setMaterialSelecionado] = useState("");
+  const [quantidadeMaterial, setQuantidadeMaterial] = useState("");
   const [erro, setErro] = useState("");
   const [carregando, setCarregando] = useState(false);
   const [reservado, setReservado] = useState(false);
@@ -167,6 +176,14 @@ export default function Reserva() {
       return;
     }
 
+    if (
+      materialSelecionado &&
+      (!quantidadeMaterial || Number(quantidadeMaterial) < 1)
+    ) {
+      setErro("Informe uma quantidade válida para o material escolhido.");
+      return;
+    }
+
     setCarregando(true);
 
     const cadastrado = await checkRaCadastrado(ra);
@@ -190,6 +207,8 @@ export default function Reserva() {
     setDataSelecionada(null);
     setHorarioSelecionado(null);
     setRa("");
+    setMaterialSelecionado("");
+    setQuantidadeMaterial("");
     setErro("");
   }
 
@@ -426,6 +445,53 @@ export default function Reserva() {
                   className="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-800 outline-none transition focus:border-unifg-blue focus:ring-2 focus:ring-unifg-blue/20"
                 />
 
+                <div className="mt-5">
+                  <label
+                    htmlFor="material"
+                    className="block text-sm font-semibold text-unifg-blue mb-1"
+                  >
+                    Material <span className="font-normal text-slate-400">(opcional)</span>
+                  </label>
+
+                  <div className="grid grid-cols-[1fr_6rem] gap-2">
+                    <select
+                      id="material"
+                      value={materialSelecionado}
+                      onChange={(e) => {
+                        setMaterialSelecionado(e.target.value);
+                        if (!e.target.value) setQuantidadeMaterial("");
+                        setErro("");
+                      }}
+                      className="w-full rounded-lg border border-slate-300 bg-white px-3 py-3 text-slate-800 outline-none transition focus:border-unifg-blue focus:ring-2 focus:ring-unifg-blue/20"
+                    >
+                      <option value="">Nenhum material</option>
+                      {MATERIAIS.map((material) => (
+                        <option key={material} value={material}>
+                          {material}
+                        </option>
+                      ))}
+                    </select>
+
+                    <input
+                      aria-label="Quantidade do material"
+                      type="number"
+                      min="1"
+                      value={quantidadeMaterial}
+                      onChange={(e) => {
+                        setQuantidadeMaterial(e.target.value);
+                        setErro("");
+                      }}
+                      disabled={!materialSelecionado}
+                      placeholder="Qtd."
+                      className="w-full rounded-lg border border-slate-300 px-3 py-3 text-slate-800 outline-none transition focus:border-unifg-blue focus:ring-2 focus:ring-unifg-blue/20 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400"
+                    />
+                  </div>
+
+                  <p className="mt-1 text-xs text-slate-400">
+                    Você pode reservar sem solicitar material.
+                  </p>
+                </div>
+                      
                 <div className="mt-5 space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-slate-400">
@@ -453,6 +519,16 @@ export default function Reserva() {
 
                     <span className="font-semibold text-slate-700">
                       {horarioSelecionado || "—"}
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between gap-4">
+                    <span className="text-slate-400">Material</span>
+
+                    <span className="text-right font-semibold text-slate-700">
+                      {materialSelecionado
+                        ? `${materialSelecionado} (${quantidadeMaterial || "—"})`
+                        : "Nenhum"}
                     </span>
                   </div>
                 </div>
